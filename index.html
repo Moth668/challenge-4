@@ -26,7 +26,7 @@
 
     <main>
 
-        <aside>
+        <aside class="circle" id="circle">
             <h2>My First Blog</h2>
         </aside>
 
@@ -35,24 +35,24 @@
         <!-- An input element whose label and id are `title` -->
         <!-- A textarea element whose label and id are `content` -->
         <!-- A p element whose id is `error` -->
-        <form id="blogForm">
-            <section>
+        <section>
+            <form id="blogForm">
                 <h2>What's on your mind?</h2>
 
                 <label for="username">Author:</label><br>
-                <input type="text" id="username" name="username"><br>
+                <input type="text" id="username" name="username" placeholder="Enter Username Here."><br>
 
                 <label for="title">Blog Title:</label><br>
-                <input type="text" id="title" name="title"><br>
+                <input type="text" id="title" name="title" placeholder="Enter Blog Title Here."><br>
 
                 <label for="content">Blog Content:</label><br>
-                <textarea id="content" name="content"></textarea><br>
+                <textarea id="content" name="content" placeholder="Enter Blog Content Here."></textarea><br>
 
-                <p id="error"></p><br>
+                <p id="error">Please complete the form.</p><br>
 
                 <input type="submit"></input><br>
-            </section>
-        </form>
+            </form>
+        </section>
 
     </main>
 </body>

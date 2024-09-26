@@ -1,48 +1,74 @@
 // TODO: Create a variable that selects the main element, and a variable that selects the back button element
 const main = document.querySelector("main")
-const backBtn = document.querySelector("back-button")
-// const themeSwitcher = document.querySelector('#toggle');
-let darkMode = localStorage.getItem("dark");
-let mode = 'dark';
+const backBtn = document.querySelector("back")
 
-themeSwitcher.addEventListener('click', function () {
-    // If mode is dark, apply light background
-    if (mode === 'dark') {
-        mode = 'light';
-        document.body.setAttribute('class', 'light');
-    }
-    // If mode is light, apply dark background
-    else {
-        mode = 'dark';
-        document.body.setAttribute('class', 'dark');
-    }
-});
+function newElement(blogData) {
+    const newArticle = document.createElement('article');
+    main.appendChild(newArticle);
+    const newTitle = document.createElement('h2');
+    newTitle.textContent = blogData.blogTitle;
+    newTitle.appendChild('h2')
+    const newUsername = document.createElement('blockquote');
+    newUsername.textContent = blogData.username;
+    newUsername.appendChild('blockquote');
+
+
+    return newElement;
+}
 // TODO: Create a function that builds an element and appends it to the DOM
-const buildElement = function (element, text, className) {
-    const el = document.createElement(element);
-    el.textContent = text;
-    el.setAttribute('class', className);
-    main.appendChild(el);
-};
+// const buildElement = function (article, text, className) {
+//     const el = document.createElement(article);
+//     el.textContent = text;
+//     el.setAttribute('post', className);
+//     main.appendChild(el);
+//     console.log(article);
+// };
 
 // TODO: Create a function that handles the case where there are no blog posts to display
 const noPosts = function () {
-    buildElement('h3', 'No posts yet!', 'no-posts');
+    buildElement('h1', 'No Blog posts yet...', 'no-posts');
+    console.log('No Blog posts yet...');
 };
 
 // TODO: Create a function called `renderBlogList` that renders the list of blog posts if they exist. If not, call the no posts function.
-const renderBlogList = function () {
-    const blogData = readLocalStorage();
-    if (blogData.length === 0) {
+function renterBlogList() {
+    const blogData = readLocalStorage('existingPost');
+    if (blogData.length == []) {
         noPosts();
+        console.log(blogData);
     } else {
+        for (let i = 0; i < blogPost.length; i++) {
+            newElement(blogPost[i]);
+        }
+        newPost = newElement();
+        newPost.p.textContent = blogPost.content;
+        newPost.blockquote.textContent = blogPost.username;
+        newPost.h2.textContent = blogPost.blogTitle;
         blogData.forEach((post) => {
-            buildElement('h3', post.title, 'title');
-            buildElement('p', post.author, 'author');
-            buildElement('p', post.content, 'content');
+            buildElement('h2', post.title, 'title');
         });
+        blogData.forEach((post) => {
+            buildElement('p', post.author, 'author');
+        });
+        blogData.forEach((post) => {
+            buildElement('blockquote', post.content, 'content');
+        });
+        console.log(post.title, post.author, post.content);
     }
 };
 
 // TODO: Call the `renderBlogList` function
 renderBlogList();
+
+// backBtn.addEventListener('click', (event) => {
+//     event.redirectURL('index.html');
+// });
+
+// const redirectPage = function (url) {
+//     backBtn.addEventListener('click', (event) => {
+//         event.redirectURL('index.html');
+//         redirectURL = url;
+//         location.assign(url);
+//         console.log('redirected');
+//     });
+// };

@@ -7,28 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentInput = document.getElementById('content');
     const errorElement = document.getElementById('error');
 
+    const blogPosts = {
+        username: usernameInput.value.trim(),
+        title: titleInput.value.trim(),
+        content: contentInput.value.trim(),
+    };
+
     // Checking if any fields are empty
     function checkEmpty() {
         if (usernameInput.value.trim() === '' || titleInput.value.trim() === '' || contentInput.value.trim() === '') {
             errorElement.textContent = 'Please complete the form.';
+            console.log(errorElement);
         } else {
-            const blogPost = {
-                username: usernameInput.value.trim(),
-                title: titleInput.value.trim(),
-                content: contentInput.value.trim()
-            };
 
             // Retrieving existing posts from localStorage
-            const existingPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+            const existingPosts = JSON.parse(localStorage.getItem('existingPosts')) || [];
 
             // Adding the new post to the array
-            existingPosts.push(blogPost);
+            existingPosts.push(blogPosts);
+            console.log(existingPosts);
 
             // Storing updated array back in localStorage
-            localStorage.setItem('blogPosts', JSON.stringify(existingPosts));
+            localStorage.setItem('existingPosts', JSON.stringify(existingPosts));
 
             // Redirecting to the blog posts page
-            redirectPage('blog.html');
+            redirectURL();
         }
         return;
     }
@@ -38,4 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         checkEmpty();
     });
+
+
+    let redirectURL = 'blog.html';
+    const redirectPage = function (url) {
+        redirectURL = url;
+        location.assign(url);
+        console.log('redirected')
+    };
 });
