@@ -7,14 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentInput = document.getElementById('content');
     const errorElement = document.getElementById('error');
 
-    const blogPosts = {
-        username: usernameInput.value.trim(),
-        title: titleInput.value.trim(),
-        content: contentInput.value.trim(),
-    };
 
     // Checking if any fields are empty
     function checkEmpty() {
+        const blogPosts = {
+            username: usernameInput.value.trim(),
+            title: titleInput.value.trim(),
+            content: contentInput.value.trim(),
+        };
+
         if (usernameInput.value.trim() === '' || titleInput.value.trim() === '' || contentInput.value.trim() === '') {
             errorElement.textContent = 'Please complete the form.';
             console.log(errorElement);
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('existingPosts', JSON.stringify(existingPosts));
 
             // Redirecting to the blog posts page
-            redirectURL();
+            redirectPage('blog.html');
         }
         return;
     }

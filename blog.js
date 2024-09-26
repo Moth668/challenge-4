@@ -6,11 +6,14 @@ function newElement(blogData) {
     const newArticle = document.createElement('article');
     main.appendChild(newArticle);
     const newTitle = document.createElement('h2');
-    newTitle.textContent = blogData.blogTitle;
-    newTitle.appendChild('h2')
+    newTitle.textContent = blogData.title;
+    newArticle.appendChild(newTitle)
     const newUsername = document.createElement('blockquote');
     newUsername.textContent = blogData.username;
-    newUsername.appendChild('blockquote');
+    newArticle.appendChild(newUsername);
+    const newContent = document.createElement('content');
+    newArticle.appendChild(newContent);
+    newContent.textContent = blogData.content;
 
 
     return newElement;
@@ -31,29 +34,29 @@ const noPosts = function () {
 };
 
 // TODO: Create a function called `renderBlogList` that renders the list of blog posts if they exist. If not, call the no posts function.
-function renterBlogList() {
-    const blogData = readLocalStorage('existingPost');
-    if (blogData.length == []) {
+function renderBlogList() {
+    const blogPost = readLocalStorage('existingPost');
+    if (blogPost.length == []) {
         noPosts();
-        console.log(blogData);
+        console.log(blogPost);
     } else {
         for (let i = 0; i < blogPost.length; i++) {
             newElement(blogPost[i]);
         }
-        newPost = newElement();
-        newPost.p.textContent = blogPost.content;
-        newPost.blockquote.textContent = blogPost.username;
-        newPost.h2.textContent = blogPost.blogTitle;
-        blogData.forEach((post) => {
-            buildElement('h2', post.title, 'title');
-        });
-        blogData.forEach((post) => {
-            buildElement('p', post.author, 'author');
-        });
-        blogData.forEach((post) => {
-            buildElement('blockquote', post.content, 'content');
-        });
-        console.log(post.title, post.author, post.content);
+        // newPost = newElement();
+        // newPost.p.textContent = blogPost.content;
+        // newPost.blockquote.textContent = blogPost.username;
+        // newPost.h2.textContent = blogPost.blogTitle;
+        // blogData.forEach((post) => {
+        //     buildElement('h2', post.title, 'title');
+        // });
+        // blogData.forEach((post) => {
+        //     buildElement('p', post.author, 'author');
+        // });
+        // blogData.forEach((post) => {
+        //     buildElement('blockquote', post.content, 'content');
+        // });
+        // console.log(post.title, post.author, post.content);
     }
 };
 
